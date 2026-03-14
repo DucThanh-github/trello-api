@@ -6,12 +6,13 @@
 
 // acc mongodb: thanh_nguyen (Thanh@10121995)
 
-const MONGODB_URI =
-  'mongodb+srv://thanh_nguyen:gwhZSRP1NWmwB3NN@cluster0.bjmyyhs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-const DATABASE_NAME = 'trello'
+
 
 import { MongoClient, ServerApiVersion } from 'mongodb'
+import env from './environment.js'
 
+
+const { MONGODB_URI, DATABASE_NAME } = env
 let trelloDatabaseInstance = null
 
 // Khởi tạo 1 doi tuong MongoClient de ket noi mongodb
@@ -34,4 +35,8 @@ export const GET_DB = () => {
     throw new Error('Must connect to database first')
   }
   return trelloDatabaseInstance
+}
+
+export const CLOSE_DB = async () => {
+  await mongoClientInstance.close()
 }

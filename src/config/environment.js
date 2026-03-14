@@ -3,3 +3,13 @@
  * YouTube: https://youtube.com/@trungquandev
  * "A bit of fragrance clings to the hand that gives flowers!"
  */
+import 'dotenv/config'
+
+const env = {
+    APP_HOST: process.env.APP_HOST,
+    APP_PORT: process.env.APP_PORT,
+    MONGODB_URI: process.env.MONGODB_URI,
+    DATABASE_NAME: process.env.DATABASE_NAME
+}
+
+export default env
