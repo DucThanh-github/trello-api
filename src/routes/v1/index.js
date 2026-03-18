@@ -11,5 +11,5 @@ Router.get('/status', (req, res) => {
 });
 
 Router.use('/boards', BoardRoutes)
-
+console.log('BoardRoutes', BoardRoutes)
 export const APIs_V1 = Router;
