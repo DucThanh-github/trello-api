@@ -4,14 +4,13 @@ import express from 'express'
 import { CONNECT_DB, CLOSE_DB } from './config/mongodb.js'
 import env from './config/environment.js'
 import asyncExitHook from 'async-exit-hook'
+import { APIs_V1 } from './routes/v1'
 const START_SERVER = () => {
   const app = express()
   const hostname = env.APP_HOST
   const port = env.APP_PORT
 
-  app.get('/', (req, res) => {
-    res.end('<h1>Hello World!</h1><hr>')
-  })
+  app.use('/v1', APIs_V1)
 
   app.listen(port, hostname, () => {
     console.log(`Hello , I am running at ${hostname}:${port}/`)
@@ -34,10 +33,3 @@ const START_SERVER = () => {
     }
   })()
 
-// CONNECT_DB()
-//   .then(() => console.log('connected to database'))
-//   .then(() => START_SERVER())
-//   .catch((err) => {
-//     console.error('Failed to connect to database:', err)
-//     process.exit(0)
-//   })
