@@ -9,6 +9,8 @@ const START_SERVER = () => {
   const app = express()
   const hostname = env.APP_HOST
   const port = env.APP_PORT
+  app.use(express.json())
+
 
   app.use('/v1', APIs_V1)
 
