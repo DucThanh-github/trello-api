@@ -1,7 +1,7 @@
 import express from 'express'
 import { StatusCodes } from 'http-status-codes'
 import { BoardValidation } from '../../validations/boardValidation.js'
-
+import { BoardController } from '../../controllers/boardController.js'
 const Router = express.Router()
 
 Router.route('/')
@@ -10,7 +10,7 @@ Router.route('/')
             message: 'Get all boards'
         })
     })
-    .post(BoardValidation.createNew)
+    .post(BoardValidation.createNew, BoardController.createNew)
 
 
 Router.route('/:id')
