@@ -5,6 +5,7 @@ import { CONNECT_DB, CLOSE_DB } from './config/mongodb.js'
 import env from './config/environment.js'
 import asyncExitHook from 'async-exit-hook'
 import { APIs_V1 } from './routes/v1'
+import { errorMiddleware } from './middlewares/errorMiddleware.js'
 const START_SERVER = () => {
   const app = express()
   const hostname = env.APP_HOST
@@ -13,6 +14,7 @@ const START_SERVER = () => {
 
 
   app.use('/v1', APIs_V1)
+  app.use(errorMiddleware)
 
   app.listen(port, hostname, () => {
     console.log(`Hello , I am running at ${hostname}:${port}/`)
