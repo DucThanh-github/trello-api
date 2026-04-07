@@ -1,4 +1,5 @@
 import { StatusCodes } from "http-status-codes"
+import env from "~/config/environment"
 
 
 export const errorMiddleware = (err, req, res, next) => {
@@ -11,5 +12,8 @@ export const errorMiddleware = (err, req, res, next) => {
         stack: err.stack
     }
 
+    if (env.BUILD_MODE !== 'dev') {
+        delete errorResponse.stack
+    }
     res.status(statusCode).json(errorResponse)
 }
