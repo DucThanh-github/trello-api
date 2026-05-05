@@ -1,13 +1,12 @@
 import { StatusCodes } from "http-status-codes";
-import ApiError from "~/utils/ApiError";
+import { BoardService } from "~/services/boardService";
 const createNew = async (req, res, next) => {
 
     try {
-        throw new ApiError(StatusCodes.BAD_REQUEST, 'Invalid request')
-        res.status(StatusCodes.CREATED).json({
-            message: 'Create new board'
+        const newBoard = await BoardService.createNew(req.body)
 
-        })
+        res.status(StatusCodes.CREATED).json(newBoard)
+
     } catch (error) {
         next(error)
     }
